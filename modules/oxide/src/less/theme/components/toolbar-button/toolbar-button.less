@@ -11,27 +11,27 @@
 //
 
 @toolbar-button-background-color: transparent;
-@toolbar-button-border-radius: 3px;
+@toolbar-button-border-radius: 0;
 @toolbar-button-border: 0;
 @toolbar-button-box-shadow: none;
-@toolbar-button-chevron-color: fade(@toolbar-button-icon-color, 50%);
+@toolbar-button-chevron-color: @toolbar-button-icon-color;
 @toolbar-button-chevron-width: @base-value;
 @toolbar-button-font-size: @font-size-sm;
 @toolbar-button-font-style: normal;
 @toolbar-button-font-weight: @font-weight-normal;
 @toolbar-button-height: 34px;
-@toolbar-button-icon-color: contrast(@background-color, @color-white, @color-black);
-@toolbar-button-spacing-x: 0;
-@toolbar-button-spacing-y: 2px;
-@toolbar-button-text-color: contrast(@background-color, @color-white, @color-black);
+@toolbar-button-icon-color: @color-tint;
+@toolbar-button-spacing-x: 1px;
+@toolbar-button-spacing-y: 0;
+@toolbar-button-text-color: @color-tint;
 @toolbar-button-text-transform: none;
 @toolbar-button-width: 34px;
 
-@toolbar-button-hover-background-color: multiply(white, contrast(@background-color, fade(@color-black, 15), fade(@color-black, 85)));
+@toolbar-button-hover-background-color: @color-tint;
 @toolbar-button-hover-border: @toolbar-button-border;
 @toolbar-button-hover-box-shadow: @toolbar-button-box-shadow;
-@toolbar-button-hover-icon-color: @toolbar-button-icon-color;
-@toolbar-button-hover-text-color: @toolbar-button-text-color;
+@toolbar-button-hover-icon-color: @color-white;
+@toolbar-button-hover-text-color: @color-white;
 
 @toolbar-button-focus-background-color: @toolbar-button-hover-background-color;
 @toolbar-button-focus-border: @toolbar-button-hover-border;
@@ -46,14 +46,14 @@
 @toolbar-button-active-text-color: @toolbar-button-enabled-text-color;
 @toolbar-button-active-transform: none; // Set to `translateY(1px)` for a small push down effect
 
-@toolbar-button-enabled-background-color:  multiply(white, contrast(@background-color, fade(@color-black, 25), fade(@color-black, 65)));
+@toolbar-button-enabled-background-color: @color-tint;
 @toolbar-button-enabled-border: @toolbar-button-hover-border;
 @toolbar-button-enabled-box-shadow: @toolbar-button-box-shadow;
 @toolbar-button-enabled-icon-color: @toolbar-button-hover-icon-color;
 @toolbar-button-enabled-text-color: @toolbar-button-hover-text-color;
 @toolbar-button-enabled-transform: none;
 
-@toolbar-button-disabled-background-color:  @toolbar-button-background-color;
+@toolbar-button-disabled-background-color: @toolbar-button-background-color;
 @toolbar-button-disabled-border: @toolbar-button-border;
 @toolbar-button-disabled-box-shadow: @toolbar-button-box-shadow;
 @toolbar-button-disabled-icon-color: fade(@toolbar-button-icon-color, 50%);
@@ -123,23 +123,6 @@
     }
   }
 
-  .tox-tbtn--disabled,
-  .tox-tbtn--disabled:hover,
-  .tox-tbtn:disabled,
-  .tox-tbtn:disabled:hover {
-    background: @toolbar-button-disabled-background-color;
-    border: @toolbar-button-disabled-border;
-    box-shadow: @toolbar-button-disabled-box-shadow;
-    color: @toolbar-button-disabled-text-color;
-    cursor: not-allowed;
-
-    // Disable stylelint below because we're mixing the :disabled modifier with the "--disabled" class
-    // since they need to be kept the same/use the same rules
-    svg { /* stylelint-disable-line no-descending-specificity */
-      fill: @toolbar-button-disabled-icon-color;
-    }
-  }
-
   // An toggle on/off button's on state.
   .tox-tbtn--enabled,
   .tox-tbtn--enabled:hover {
@@ -156,6 +139,24 @@
     // since they need to be kept the same/use the same rules
     svg { /* stylelint-disable-line no-descending-specificity */
       fill: @toolbar-button-enabled-icon-color;
+    }
+  }
+
+  .tox-tbtn--disabled,
+  .tox-tbtn--disabled:hover,
+  .tox-tbtn:disabled,
+  .tox-tbtn:disabled:hover {
+    background: @color-white;
+    border: @toolbar-button-disabled-border;
+    box-shadow: @toolbar-button-disabled-box-shadow;
+    color: @toolbar-button-disabled-text-color;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    // Disable stylelint below because we're mixing the :disabled modifier with the "--disabled" class
+    // since they need to be kept the same/use the same rules
+    svg { /* stylelint-disable-line no-descending-specificity */
+      fill: @toolbar-button-disabled-icon-color;
     }
   }
 
